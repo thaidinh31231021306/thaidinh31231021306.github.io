@@ -1,0 +1,82 @@
+/* ===== Khung chứa lớn ===== */
+#root {
+  width: 1024px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+/* ===== Tiêu đề ===== */
+#site-header {
+  text-align: center;
+  background-color: #b3b3b3;
+  color: black;
+  text-shadow: 1px 1px 2px white;
+  padding: 10px 0;
+  font-size: 24px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-family: "Times New Roman", serif;
+}
+
+/* ===== Danh sách các anh hùng ===== */
+.superheroes {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* ===== Từng anh hùng ===== */
+.superheroes li {
+  position: relative;
+  display: inline-block;
+  width: 180px;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+/* ===== Hình ảnh ===== */
+.superheroes li img {
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+}
+
+/* ===== Tên nhân vật ===== */
+.hero-header {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px black;
+  font-size: 16px;
+}
+
+/* ===== Nút “Read more” ===== */
+.superheroes li a {
+  display: none;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+/* ===== Hover hiệu ứng ===== */
+.superheroes li:hover {
+  transform: scale(1.1);
+}
+
+.superheroes li:hover a {
+  display: inline-block;
+  text-decoration: underline;
+}
