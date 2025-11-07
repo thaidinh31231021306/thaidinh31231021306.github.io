@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bài 1 – Animate.css Hiệu ứng yêu thích</title>
+
+<!-- Animate.css (v4) CDN chính chủ của Dan Eden -->
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<style>
+  :root {
+    --brand-blue:#0066ff;
+    --brand-red:#ff3b3b;
+  }
+  body {
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif;
+    background:#f7f7fb;
+    padding:40px;
+    color:#222;
+  }
+  h1 {font-size:26px;margin-bottom:14px}
+  p.note {color:#666;margin-bottom:24px}
+  .grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:16px;
+  }
+  .card {
+    background:#fff;
+    border-radius:14px;
+    padding:16px;
+    box-shadow:0 8px 22px rgba(0,0,0,.06);
+  }
+  .tag {
+    font-size:13px;
+    color:#555;
+    margin-bottom:10px;
+  }
+  .khoa {
+    display:inline-block;
+    padding:10px 16px;
+    border-radius:12px;
+    background:var(--brand-blue);
+    color:#fff;
+    font-weight:700;
+    font-size:20px;
+    cursor:pointer;
+    transition:background .3s, font-size .3s, transform .3s;
+  }
+  .khoa:hover {
+    background:var(--brand-red);
+    font-size:30px;
+    transform:scale(1.2);
+  }
+</style>
+</head>
+<body>
+
+<h1>Bài 1 – Hiệu ứng yêu thích (Animate.css)</h1>
+<p class="note">Di chuột hoặc nhấn vào từng ô để xem hiệu ứng yêu thích được áp dụng bằng thư viện Animate.css.</p>
+
+<div class="grid">
+  <div class="card">
+    <div class="tag">Hiệu ứng: <b>bounce</b></div>
+    <span class="khoa" data-effect="animate__bounce">Khoa CNTTKD</span>
+  </div>
+
+  <div class="card">
+    <div class="tag">Hiệu ứng: <b>tada</b></div>
+    <span class="khoa" data-effect="animate__tada">Khoa CNTTKD</span>
+  </div>
+
+  <div class="card">
+    <div class="tag">Hiệu ứng: <b>zoomIn</b></div>
+    <span class="khoa" data-effect="animate__zoomIn">Khoa CNTTKD</span>
+  </div>
+
+  <div class="card">
+    <div class="tag">Hiệu ứng: <b>fadeInUp</b></div>
+    <span class="khoa" data-effect="animate__fadeInUp">Khoa CNTTKD</span>
+  </div>
+
+  <div class="card">
+    <div class="tag">Hiệu ứng: <b>jackInTheBox</b></div>
+    <span class="khoa" data-effect="animate__jackInTheBox">Khoa CNTTKD</span>
+  </div>
+
+  <div class="card">
+    <div class="tag">Hiệu ứng: <b>rubberBand</b></div>
+    <span class="khoa" data-effect="animate__rubberBand">Khoa CNTTKD</span>
+  </div>
+
+  <div class="card">
+    <div class="tag">Hiệu ứng: <b>heartBeat</b></div>
+    <span class="khoa" data-effect="animate__heartBeat">Khoa CNTTKD</span>
+  </div>
+
+  <div class="card">
+    <div class="tag">Hiệu ứng: <b>flipInX</b></div>
+    <span class="khoa" data-effect="animate__flipInX">Khoa CNTTKD</span>
+  </div>
+</div>
+
+<script>
+  // Hàm phát lại hiệu ứng khi hover hoặc click
+  function playEffect(el) {
+    const effect = el.dataset.effect;
+    el.classList.add('animate__animated', effect);
+    el.addEventListener('animationend', () => {
+      el.classList.remove('animate__animated', effect);
+    }, { once: true });
+  }
+
+  document.querySelectorAll('.khoa').forEach(el => {
+    el.addEventListener('mouseenter', () => playEffect(el));
+    el.addEventListener('click', () => playEffect(el));
+  });
+</script>
+
+</body>
+</html>

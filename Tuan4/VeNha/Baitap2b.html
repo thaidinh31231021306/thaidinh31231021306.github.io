@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hover Style #7 – Codrops (Tùy chỉnh)</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=PT+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+/* ==== RESET & LAYOUT ==== */
+* {box-sizing: border-box; margin: 0; padding: 0;}
+img {display: block; width: 100%; height: 100%; object-fit: cover;}
+body {
+  background: #efe9dd url("images/white_texture.jpg");
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #222;
+}
+.header {max-width: 980px; margin: 28px auto 10px; text-align: center;}
+.title {font: 700 44px/1.1 "Oswald", Arial, sans-serif;}
+.subtitle {margin-top: 6px; color: #8a6b20; font: italic 16px/1.2 "PT Serif", Georgia, serif;}
+
+/* ==== TABS ==== */
+.tabs {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin: 18px 0 24px;
+  flex-wrap: wrap;
+}
+.tab {
+  font: 600 12px/1 "Oswald", Arial, sans-serif;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid #ccc8bc;
+  background: #fff;
+  color: #000;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+.tab.is-active {
+  background: #e0c36f;
+  border-color: #d1b757;
+  color: #111;
+}
+
+/* ==== LƯỚI ==== */
+.container {max-width: 980px; margin: 0 auto; padding: 22px;}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+@media (max-width: 900px) {.grid {grid-template-columns: 1fr;}}
+.frame {
+  background: #fff;
+  border-radius: 6px;
+  padding: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .12), 0 3px 8px rgba(0, 0, 0, .08);
+}
+
+/* ==== VIEW CƠ BẢN ==== */
+.view {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  aspect-ratio: 4/3;
+  text-align: center;
+  cursor: default;
+  box-shadow: 1px 1px 2px #e6e6e6;
+  background: #fff;
+}
+.view .mask, .view .content {position: absolute; inset: 0;}
+.view h2 {
+  margin: 20px 0 0;
+  background: rgba(0, 0, 0, .8);
+  color: #fff;
+  padding: 10px;
+  font: 700 16px/1 "Oswald", Arial, sans-serif;
+  text-transform: uppercase;
+}
+.view p {
+  color: #fff;
+  padding: 12px 20px 6px;
+  font: italic 14px/1.35 "PT Serif", Georgia, serif;
+}
+.view a.info {
+  display: inline-block;
+  margin: 12px auto 20px;
+  background: #111;
+  color: #fff;
+  padding: 9px 16px;
+  border-radius: 3px;
+  font: 700 12px/1 "Oswald", Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+/* ==== HOVER STYLE #7 (đã chỉnh) ==== */
+/* Trạng thái ban đầu */
+.view-seventh img {
+  transition: transform .6s cubic-bezier(.22,.61,.36,1);
+  transform: scale(1);
+  opacity: 1;
+}
+.view-seventh .mask {
+  background-color: rgba(114, 64, 51, 0.5);
+  opacity: 0;
+  transition: all .6s cubic-bezier(.22,.61,.36,1);
+  transform: scale(0.8) rotate(-180deg);
+}
+.view-seventh h2,
+.view-seventh p,
+.view-seventh a.info {
+  transform: scale(0.8) rotate(-180deg);
+  opacity: 0;
+  transition: all .6s cubic-bezier(.22,.61,.36,1);
+}
+
+/* Khi hover */
+.view-seventh:hover img {
+  transform: rotate(720deg) scale(1.1);
+  opacity: 1; /* Giữ ảnh nguyên */
+}
+.view-seventh:hover .mask {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+.view-seventh:hover h2,
+.view-seventh:hover p,
+.view-seventh:hover a.info {
+  opacity: 1;
+  transform: scale(1) rotate(720deg);
+}
+
+/* Tab màu đen cố định */
+.tab, .tab:link, .tab:visited, .tab:hover, .tab:active, .tab.is-active {
+  color: #000 !important;
+  text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+<header class="header">
+  <h1 class="title">Original Hover Effects</h1>
+  <p class="subtitle">with CSS3 Transitions and Animations</p>
+  <nav class="tabs">
+    <a class="tab" href="#">DEMO 1</a>
+    <a class="tab" href="#">DEMO 2</a>
+    <a class="tab" href="#">DEMO 3</a>
+    <a class="tab" href="#">DEMO 4</a>
+    <a class="tab" href="#">DEMO 5</a>
+    <a class="tab" href="#">DEMO 6</a>
+    <a class="tab is-active" href="#">DEMO 7</a>
+    <a class="tab" href="#">DEMO 8</a>
+    <a class="tab" href="#">DEMO 9</a>
+    <a class="tab" href="#">DEMO 10</a>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="grid">
+    <!-- Card 1 -->
+    <div class="frame">
+      <div class="view view-seventh">
+        <img src="images/5.jpg" alt="Ảnh 5">
+        <div class="mask"></div>
+        <div class="content">
+          <h2>Hover Style #7</h2>
+          <p>A wonderful serenity has taken possession of my entire soul…</p>
+          <a class="info" href="#">Read more</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="frame">
+      <div class="view view-seventh">
+        <img src="images/6.jpg" alt="Ảnh 6">
+        <div class="mask"></div>
+        <div class="content">
+          <h2>Hover Style #7</h2>
+          <p>Like these sweet mornings of spring which I enjoy with my whole heart.</p>
+          <a class="info" href="#">Read more</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="frame">
+      <div class="view view-seventh">
+        <img src="images/7.jpg" alt="Ảnh 7">
+        <div class="mask"></div>
+        <div class="content">
+          <h2>Hover Style #7</h2>
+          <p>I am alone, and feel the charm of existence in this spot.</p>
+          <a class="info" href="#">Read more</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="frame">
+      <div class="view view-seventh">
+        <img src="images/8.jpg" alt="Ảnh 8">
+        <div class="mask"></div>
+        <div class="content">
+          <h2>Hover Style #7</h2>
+          <p>When lovely nature speaks to me, my purest thoughts flow.</p>
+          <a class="info" href="#">Read more</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>
