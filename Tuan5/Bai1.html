@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>CD - Hãng đĩa thời đại</title>
+
+  <!-- Bootstrap 3 -->
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- xZoom -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/xzoom@1.0.15/dist/xzoom.css" media="all"/>
+
+  <!-- Bootstrap Star Rating -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.0/css/star-rating.min.css"/>
+
+  <style>
+    body{
+      background:#f5f5f5;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    }
+    .top-bar{
+      text-align:center;
+      font-size:13px;
+      padding:8px 0;
+      background:#fff;
+      border-bottom:1px solid #e5e5e5;
+    }
+    .top-bar a{font-weight:600;}
+
+    /* NAVBAR */
+    .homepage-header-logo{
+      height:30px;
+    }
+
+    .main-wrap{
+      padding:25px 30px 40px;
+    }
+
+    /* Sidebar */
+    .sidebar-title{
+      font-size:15px;
+      font-weight:600;
+      margin-bottom:15px;
+    }
+    .filter-section{
+      margin-bottom:25px;
+    }
+    .filter-section h5{
+      margin:15px 0 8px;
+      font-size:14px;
+      font-weight:600;
+    }
+    .filter-link{
+      cursor:pointer;
+    }
+
+    /* Header right */
+    .page-header-row{
+      margin-bottom:25px;
+    }
+    .page-title{
+      font-size:24px;
+      font-weight:600;
+      margin:0 0 5px;
+    }
+    .page-title span{
+      font-weight:400;
+      color:#777;
+      font-size:18px;
+    }
+    .header-actions a{
+      font-size:13px;
+      margin-left:15px;
+    }
+
+.product-card{
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 0;
+    padding: 24px 24px 20px;
+    margin-bottom: 40px;
+    box-shadow: none;              /* bỏ shadow dày dày */
+}
+    /* Khung chứa ảnh lớn, chiếm gần hết chiều ngang */
+.product-image-wrap{
+    background: #f7f7f7;
+    margin-bottom: 18px;
+    height: 260px;                 /* chỉnh cao/thấp theo ý */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.product-image-wrap img{
+    max-height: 220px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+}
+
+ 
+.product-label{
+    font-size:12px;
+    font-weight:600;
+    margin-bottom:2px;
+}
+.product-label.promo{color:#d35400;}
+.product-label.best{color:#c0392b;}
+
+   .product-name{
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:2px;
+}
+.product-subtitle{
+    font-size:13px;
+    color:#777;
+    margin-bottom:6px;
+}
+.product-price{
+    font-size:15px;
+    font-weight:600;
+    margin-bottom:6px;
+}
+
+    /* Color dots */
+   .color-dots{
+    margin-bottom: 10px;
+}
+
+    .dot{
+    display:inline-block;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    margin-right:4px;
+    border:1px solid #ccc;
+}
+.dot-grey{background:#555;}
+.dot-black{background:#111;}
+.dot-white{background:#fff;}
+.dot-red{background:#c0392b;}
+
+   /* Progress “Còn lại xx / yy đôi” */
+.stock-status small{
+    font-size:11px;
+    color:#777;
+}
+    .stock-status .progress{
+    margin:4px 0 4px;
+    height:6px;
+    border-radius:10px;
+    background:#eee;
+}
+.stock-status .progress-bar{
+    border-radius:10px;
+}
+
+    /* Rating & reviews (theo file hướng dẫn) */
+    .ratings{
+      margin-top:4px;
+      font-size:12px;
+    }
+    .ratings .rating-container{
+      display:inline-block;
+    }
+    .ratings .pull-right{
+      margin-top:2px;
+    }
+    .rating-container .caption{
+      display:none; /* ẩn caption mặc định */
+    }
+    
+.product-card:hover{
+    border-color:#ddd;
+    box-shadow:0 4px 12px rgba(0,0,0,0.06);
+}
+
+.product-card-link{
+  display:block;
+  text-decoration:none;
+  color:inherit;
+}
+.product-card-link:hover{
+  text-decoration:none;
+}
+
+
+.product-modal .modal-dialog{
+    width: 900px;          /* modal rộng hơn chút */
+}
+
+.product-modal .modal-content{
+    border-radius: 8px;
+    border: none;
+}
+
+.product-modal .modal-header{
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.product-modal .modal-body{
+    padding: 15px 25px 25px;
+}
+
+/* layout 2 cột */
+.pm-gallery{
+    display: flex;
+    align-items: stretch;
+}
+
+/* cột thumbnail dọc bên trái */
+.pm-thumbs{
+    width: 80px;
+    margin-right: 15px;
+}
+
+.pm-thumb{
+    width: 60px;
+    height: 60px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    border-radius: 4px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    background: #f5f5f5;
+}
+
+.pm-thumb img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pm-thumb.active{
+    border-color: #000;
+}
+
+/* ảnh lớn ở giữa */
+.pm-main-image{
+    flex: 1;
+    background: #f7f7f7;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 360px;
+}
+
+.pm-main-image img{
+    max-height: 320px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+}
+
+/* Cột phải – info */
+.pm-title{
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 0;
+}
+
+.pm-subtitle{
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.pm-price{
+    font-size: 20px;
+    font-weight: 600;
+    margin: 15px 0;
+}
+
+/* chọn màu – ô vuông nhỏ */
+.pm-color-option{
+    width: 70px;
+    height: 70px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 10px;
+}
+.pm-color-option img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.pm-color-option.active{
+    border-color: #000;
+}
+
+/* chữ Select Size + Size Guide */
+.pm-size-header{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* lưới size */
+.pm-size-grid{
+    margin-bottom: 20px;
+}
+
+.pm-size-btn{
+    display: inline-block;
+    width: 30%;
+    margin: 0 8px 8px 0;
+    padding: 10px 0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #fff;
+    text-align: center;
+    font-size: 13px;
+    cursor: pointer;
+}
+.pm-size-btn.disabled{
+    color: #aaa;
+    background: #f5f5f5;
+    cursor: not-allowed;
+}
+.pm-size-btn.active{
+    border-color: #000;
+}
+
+/* nút Add to Bag + Favourite */
+.pm-add-btn{
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 999px;
+    background: #111;
+    color: #fff;
+    font-size: 15px;
+    border: none;
+    margin-bottom: 12px;
+}
+
+.pm-fav-btn{
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+.pm-fav-btn span.glyphicon{
+    margin-left: 5px;
+}
+
+/* ==== REVIEW TRONG MODAL ==== */
+.pm-review-block{
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 12px;
+    font-size: 12px;
+}
+
+.pm-review-summary{
+    margin-bottom: 8px;
+}
+
+.pm-review-stars .glyphicon{
+    color: #f0ad4e;
+    margin-right: 2px;
+}
+
+.pm-review-summary span.pm-review-count{
+    margin-left: 6px;
+    color: #666;
+}
+
+.pm-review-list{
+    max-height: 140px;          /* cho nó không quá dài */
+    overflow-y: auto;
+}
+
+.pm-review-item{
+    margin-bottom: 8px;
+}
+
+.pm-review-item strong{
+    font-size: 12px;
+}
+
+.pm-review-date{
+    color: #999;
+    font-size: 11px;
+}
+
+/* ==== SẢN PHẨM GỢI Ý TRONG MODAL ==== */
+.pm-related{
+    margin-top: 15px;
+}
+
+.pm-related-title{
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.pm-related-item{
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.pm-related-thumb{
+    background: #f7f7f7;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    overflow: hidden;
+}
+
+.pm-related-thumb img{
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+}
+
+.pm-related-name{
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.pm-related-price{
+    color: #333;
+}
+  </style>
+</head>
+<body>
+
+
+
+<!-- NAVIGATION (theo ecommerce.html trong PDF) -->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand + button mobile -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <!-- Logo -->
+      <a class="navbar-brand" href="#">
+        <img src="https://theme.hstatic.net/1000304920/1001307865/14/logo.png?v=474"
+             alt="Sneaker Store" class="homepage-header-logo">
+      </a>
+    </div>
+
+    <!-- Nội dung navbar -->
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <!-- Menu trái -->
+      <ul class="nav navbar-nav">
+        <li class="active">
+          <a href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li><a href="#">CD/DVD</a></li>
+        <li><a href="#">Cho người mới</a></li>
+        <li><a href="#">Đĩa đơn/Single</a></li>
+        <li><a href="#">Mâm đĩa</a></li> 
+        <li><a href="#">Băng Cassette</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle"
+             data-toggle="dropdown" role="button"
+             aria-haspopup="true" aria-expanded="false">
+            Đĩa than/Vinyl <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Đĩa vintage</a></li>
+            <li><a href="#">Đĩa thanh lý</a></li>
+            <li><a href="#">Đĩa mới</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Sale</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- Search: desktop -->
+      <form class="navbar-form navbar-left hidden-xs">
+        <div class="form-group">
+          <input type="text" class="form-control"
+                 placeholder="Tìm kiếm">
+        </div>
+        <button type="submit" class="btn btn-default">Search</button>
+      </form>
+
+      <!-- Search: mobile -->
+      <form class="visible-xs-inline-block" style="margin-top:10px">
+        <div class="form-group">
+          <input type="text" class="form-control"
+                 placeholder="Tìm kiếm">
+        </div>
+      </form>
+
+      <!-- Menu phải: cart + user + sign in -->
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="#">
+            <span class="badge pull-right">2</span>
+            <i class="glyphicon glyphicon-shopping-cart"></i>
+          </a>
+        </li>
+        <li><a href="account.html">
+          <i class="glyphicon glyphicon-user"></i></a></li>
+        <li><a href="#" data-toggle="modal" data-target="#loginModal">
+          Sign in</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Thanh thông báo trên cùng -->
+<div class="top-bar">
+  <a href="#">Free Standard Delivery & 30-Day Free Returns</a> |
+  <a href="#">Join Now</a> <span>•</span>
+  <a href="#">View Details</a>
+</div>
+
+<!-- MAIN CONTENT (giữ nguyên layout Men’s Shoes) -->
+<div class="container-fluid main-wrap">
+  <div class="row">
+
+    <!-- SIDEBAR LEFT -->
+    <div class="col-sm-3">
+      <div class="filter-section">
+        <div class="sidebar-title">Đĩa CD</div>
+        <ul class="list-unstyled" style="max-height:360px; overflow-y:auto;">
+          <li><a href="#">LifeStyle</a></li>
+          <li>Debut Albums</li>
+          <li>Ấn bản có chữ ký</li>
+          <li>Ấn bản Thời đại</li>
+          <li>Events</li>
+          <li>Sản phẩm mới</li>
+          <li>Phiên bản giới hạn</li>
+          <li>Retro sound</li>
+          <li>Sắp về hàng</li>
+          <li>Đang giảm giá</li>
+          <li>Hot trong tháng</li>
+        </ul>
+      </div>
+
+      <div class="filter-section">
+        <h5>Nghệ sĩ</h5>
+        <p>Nghệ sĩ Việt Nam</p>
+        <p>Nghệ sĩ Quốc tế</p>
+      </div>
+
+      <div class="filter-section">
+        <h5>Giá sản phẩm</h5>
+        <p>Dưới 700,000₫</p>
+        <p>700,000₫ – 1,500,000₫</p>
+        <p>Trên 1,500,000₫</p>
+      </div>
+    </div>
+
+    <!-- RIGHT: PRODUCT LIST -->
+    <div class="col-sm-9">
+      <div class="page-header-row clearfix">
+        <div class="pull-left">
+          <h2 class="page-title">Đĩa than/Vinyl <span>(610)</span></h2>
+        </div>
+        <div class="pull-right header-actions">
+          <a class="filter-link">Hide Filters
+            <span class="glyphicon glyphicon-filter"></span></a>
+          <a class="filter-link">Sort By <span class="caret"></span></a>
+        </div>
+      </div>
+
+      <div class="row">
+
+     <div class="col-sm-4">
+    <a href="#" class="product-card-link" data-toggle="modal" data-target="#product1Modal">
+        <div class="product-card">
+
+            <div class="product-image-wrap">
+                <img src="https://media.pitchfork.com/photos/638902d2e5592afa444298b9/1:1/w_450%2Cc_limit/SZA-SOS.jpg" alt="SOS">
+            </div>
+
+            <div class="color-dots">
+                <span class="dot dot-grey"></span>
+            </div>
+
+            <div class="product-label promo">Promo Exclusion</div>
+            <div class="product-name">SOS</div>
+            <div class="product-subtitle">
+                SZA’s long, ambitious, luxurious new album solidifies her position as a generational talent, an artist who translates her innermost feelings into indelible moments.
+            </div>
+            <div class="product-price">1,240,000₫</div>
+
+            <div class="stock-status clearfix">
+                <small class="pull-left">Còn lại 35 / 100 sản phẩm</small>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width:65%;"></div>
+                </div>
+                </div>
+
+            <div class="ratings clearfix">
+                <p class="pull-right">
+                    <a href="#">78 reviews</a>
+                </p>
+                <p>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </p>
+            </div>
+            </div>
+    </a> </div>
+
+        <!-- CARD 2 -->
+<div class="col-sm-4">
+    <a href="#" class="product-card-link" data-toggle="modal" data-target="#product2Modal">
+        <div class="product-card">
+            <div class="product-image-wrap">
+                <img src="https://media.pitchfork.com/photos/68f788e9c54e8bc4d601c515/1:1/w_450%2Cc_limit/Rosalia-Lux.jpeg" alt="LUX">
+            </div>
+
+            <div class="product-label best">New</div>
+            <div class="product-name">LUX</div>
+            <div class="product-subtitle">The Spanish singer’s fourth record is a heartfelt offering of avant-garde classical pop that roars through genre, romance, and religion.</div>
+            <div class="product-price">1,100,000₫</div>
+
+            <div class="stock-status clearfix">
+                <small class="pull-left">Còn lại 15 / 80 sản phẩm</small>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%;"></div>
+                </div>
+            </div>
+
+            <div class="ratings clearfix">
+                <p class="pull-right">
+                    <a href="#">38 reviews</a>
+                </p>
+                <p>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </p>
+            </div>
+        </div>
+    </a>
+</div>
+
+        <!-- CARD 4 -->
+<div class="col-sm-4">
+    <a href="#" class="product-card-link" data-toggle="modal" data-target="#product3Modal">
+        <div class="product-card">
+            <div class="product-image-wrap">
+                <img src="https://media.pitchfork.com/photos/66c39ee10ab267188fe4d0b3/1:1/w_450%2Cc_limit/Lana-Del-Rey.jpg" alt="Norman Fucking Rockwell!
+">
+            </div>
+
+            <div class="product-label best">Bestseller</div>
+            <div class="product-name">Norman Fucking Rockwell</div>
+            <div class="product-subtitle">On her elegant and complex fifth album, Lana Del Rey sings exquisitely of freedom and transformation and the wreckage of being alive. It establishes her as one of America’s greatest living songwriters.
+</div>
+            <div class="product-price">1,390,000₫</div>
+
+            <div class="stock-status clearfix">
+                <small class="pull-left">Còn lại 30 / 80 sản phẩm</small>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%;"></div>
+                </div>
+            </div>
+
+            <div class="ratings clearfix">
+                <p class="pull-right">
+                    <a href="#">92 reviews</a>
+                </p>
+                <p>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="col-sm-4">
+    <a href="#" class="product-card-link" data-toggle="modal" data-target="#product3Modal">
+        <div class="product-card">
+            <div class="product-image-wrap">
+                <img src="https://media.pitchfork.com/photos/5c7eafd9b8753a13dd400085/1:1/w_450%2Cc_limit/WeyesBlood_TitanicRising.jpg" alt="Titanic Rising">
+            </div>
+
+            <div class="product-label best">Bestseller</div>
+            <div class="product-name">Titanic Rising</div>
+            <div class="product-subtitle">Natalie Mering’s fourth album is a grand, sentimental ode to living and loving in the shadow of doom. It is her most ambitious and complex work yet.</div>
+            <div class="product-price">900,000₫</div>
+
+            <div class="stock-status clearfix">
+                <small class="pull-left">Còn lại 40 / 150 sản phẩm</small>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%;"></div>
+                </div>
+            </div>
+
+            <div class="ratings clearfix">
+                <p class="pull-right">
+                    <a href="#">59 reviews</a>
+                </p>
+                <p>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="col-sm-4">
+    <a href="#" class="product-card-link" data-toggle="modal" data-target="#product3Modal">
+        <div class="product-card">
+            <div class="product-image-wrap">
+                <img src="https://media.pitchfork.com/photos/6614092742a7de97785c7a48/1:1/w_450%2Cc_limit/Billie-Eilish-Hit-Me-Hard-and-Soft.jpg" alt="HIT ME HARD AND SOFT">
+            </div>
+
+            <div class="product-label best">Bestseller</div>
+            <div class="product-name">HIT ME HARD AND SOFT</div>
+            <div class="product-subtitle">The pop star teams with her brother Finneas for their third album together, expanding the cooly dark vision of their sound. It’s an honest and ambitious album when it’s not inert and repetitive.
+</div>
+            <div class="product-price">990,000₫</div>
+
+            <div class="stock-status clearfix">
+                <small class="pull-left">Còn lại 28 / 100 sản phẩm</small>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%;"></div>
+                </div>
+            </div>
+
+            <div class="ratings clearfix">
+                <p class="pull-right">
+                    <a href="#">60 reviews</a>
+                </p>
+                <p>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="col-sm-4">
+    <a href="#" class="product-card-link" data-toggle="modal" data-target="#product3Modal">
+        <div class="product-card">
+            <div class="product-image-wrap">
+                <img src="https://media.pitchfork.com/photos/67e5ca961127eadddb0cf771/1:1/w_450%2Cc_limit/Kali-Uchis.jpeg" alt="Sincerely,
+">
+            </div>
+
+            <div class="product-label best">New</div>
+            <div class="product-name">Sincerely,</div>
+            <div class="product-subtitle">The singer-songwriter’s new album is a phantasmagoria of pleasure—the perfect complement to her talent for keeping her cool.
+</div>
+            <div class="product-price">1,050,000₫</div>
+
+            <div class="stock-status clearfix">
+                <small class="pull-left">Còn lại 45 / 100 sản phẩm</small>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%;"></div>
+                </div>
+            </div>
+
+            <div class="ratings clearfix">
+                <p class="pull-right">
+                    <a href="#">40 reviews</a>
+                </p>
+                <p>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </p>
+            </div>
+        </div>
+    </a>
+</div>
+
+      </div><!-- /.row products -->
+    </div><!-- /.col-sm-9 -->
+  </div><!-- /.row -->
+</div><!-- /.main-wrap -->
+
+<!-- JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/xzoom@1.0.15/dist/xzoom.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.0/js/star-rating.min.js"></script>
+
+<script>
+  $(function () {
+    // Zoom ảnh
+    $('.xzoom').xzoom({
+      position: 'right',
+      bg: true
+    });
+
+    // Rating sao (thay thế toàn bộ glyphicon-star)
+    $('.rating').rating({
+      showClear: false,
+      showCaption: false
+    });
+  });
+</script>
+
+<div class="modal fade product-modal" id="product1Modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="row">
+
+          <!-- LEFT: GALLERY -->
+          <div class="col-sm-7">
+            <div class="pm-gallery">
+
+              <!-- thumbnails dọc -->
+              <div class="pm-thumbs">
+                <!-- mỗi thumb có data-big để đổi ảnh lớn -->
+                <div class="pm-thumb active" data-big="imgs/1.avif">
+                  <img src="
+https://upload.wikimedia.org/wikipedia/en/2/2b/SZA_-_I_Hate_U.png" alt="">
+                </div>
+                <div class="pm-thumb" data-big="imgs/2.avif">
+                  <img src="
+https://i1.sndcdn.com/artworks-PQVzL0QQs42VINOG-1BPdFQ-t500x500.jpg" alt="">
+                </div>
+                <div class="pm-thumb" data-big="imgs/3.avif">
+                  <img src="
+https://preview.redd.it/sza-lana-teaser-images-v0-y7fp0popqk5c1.jpg?width=1080&crop=smart&auto=webp&s=0087c561e085d6c8fb10009bee9828c3654068cf" alt="">
+                </div>
+                <div class="pm-thumb" data-big="imgs/4.avif">
+                  <img src="https://preview.redd.it/sza-lana-teaser-images-v0-ig32pqopqk5c1.jpg?width=1080&crop=smart&auto=webp&s=0bc43a9256db89f22faf6dd9ced4e4c1c061c786" alt="">
+                </div>
+                <div class="pm-thumb" data-big="imgs/5.avif">
+                  <img src="https://preview.redd.it/sza-lana-teaser-images-v0-4gn16qopqk5c1.jpg?width=1080&crop=smart&auto=webp&s=833cd6f1c3efedd97193737ef9aaaac5e184df47" alt="">
+                </div>
+              </div>
+
+              <!-- ảnh lớn -->
+              <div class="pm-main-image">
+                <img id="pm-main-img-1"
+                     src="https://media.pitchfork.com/photos/638902d2e5592afa444298b9/1:1/w_450%2Cc_limit/SZA-SOS.jpg"
+                     alt="SOS">
+              </div>
+
+            </div>
+          </div>
+
+          <!-- RIGHT: INFO -->
+          <div class="col-sm-5">
+            <h3 class="pm-title">SOS</h3>
+            <div class="pm-subtitle">SZA’s long, ambitious, luxurious new album solidifies her position as a generational talent, an artist who translates her innermost feelings into indelible moments.
+</div>
+            <div class="pm-price">1,240,000₫</div>
+
+            <!-- header size -->
+            <div class="pm-size-header clearfix">
+              <span class="pull-left">Chọn Phiên Bản</span>
+              <span class="pull-right" style="font-size:12px; color:#777;">
+                Thông tin chi tiết
+              </span>
+            </div>
+
+            <!-- grid size -->
+            <div class="pm-size-grid">
+              <div class="pm-size-btn">SOS</div>
+              <div class="pm-size-btn disabled">SOS: LANA</div>
+            </div>
+
+            <!-- buttons -->
+            <button class="pm-add-btn">Add to Cart</button>
+            <button class="pm-fav-btn">
+              Favourite
+              <span class="glyphicon glyphicon-heart-empty"></span>
+            </button>
+<!-- REVIEW BLOCK -->
+<div class="pm-review-block">
+  <!-- Tổng quan rating -->
+  <div class="pm-review-summary">
+    <span class="pm-review-stars">
+      <span class="glyphicon glyphicon-star"></span>
+      <span class="glyphicon glyphicon-star"></span>
+      <span class="glyphicon glyphicon-star"></span>
+      <span class="glyphicon glyphicon-star"></span>
+      <span class="glyphicon glyphicon-star-empty"></span>
+    </span>
+    <span class="pm-review-count">
+      4.5/5 · 78 reviews
+    </span>
+  </div>
+
+  <!-- Danh sách vài review -->
+  <div class="pm-review-list">
+    <div class="pm-review-item">
+      <strong>Minh K.</strong>
+      <span class="pm-review-date">· 2 ngày trước</span><br>
+      Nghe hay mà xỉu được luôn đó.
+    </div>
+
+    <div class="pm-review-item">
+      <strong>Thuỳ L.</strong>
+      <span class="pm-review-date">· 1 tuần trước</span><br>
+      YÊU CẦU CHỊ NÀY RA THÊM 10 ALBUM NỮA CHO TÔI !!!!!!!!!!!!!!!!!!!.
+    </div>
+
+    <div class="pm-review-item">
+      <strong>Quang H.</strong>
+      <span class="pm-review-date">· 3 tuần trước</span><br>
+      Dát vàng lỗ tai. Vậy mà tạch AOTY là sao trời
+    </div>
+  </div>
+</div>
+          </div>
+<div class="modal-body">
+  <div class="row">
+    <!-- toàn bộ phần gallery + info hiện tại của bạn -->
+  </div> <!-- hết row chính -->
+
+  <!-- BẮT ĐẦU: CÁC SẢN PHẨM KHÁC -->
+  <hr>
+  <div class="pm-related">
+    <div class="pm-related-title">Có thể bạn cũng thích</div>
+    <div class="row">
+      <div class="col-sm-4 pm-related-item">
+        <div class="pm-related-thumb">
+          <img src="https://media.pitchfork.com/photos/5d8902230480b10008ffa25c/1:1/w_450%2Cc_limit/Sufjan-Stevens-Carrie-and-Lowell.jpg" alt="Carrie & Lowell">
+        </div>
+        <div class="pm-related-name">Carrie & Lowell</div>
+        <div class="pm-related-price">1,450,000₫</div>
+      </div>
+
+      <div class="col-sm-4 pm-related-item">
+        <div class="pm-related-thumb">
+          <img src="https://media.pitchfork.com/photos/641c76f8717af22dc39c1ea2/1:1/w_450%2Cc_limit/Lana-Del-Rey.jpg" alt="Did You Know That There’s a Tunnel Under Ocean Blvd">
+        </div>
+        <div class="pm-related-name">Did You Know That There’s a Tunnel Under Ocean Blvd</div>
+        <div class="pm-related-price">1,210,000₫</div>
+      </div>
+
+      <div class="col-sm-4 pm-related-item">
+        <div class="pm-related-thumb">
+          <img src="https://media.pitchfork.com/photos/65dfd21824cf8305d775f0cd/1:1/w_450%2Cc_limit/Charli-XCX-Brat.jpg" alt="Brat">
+        </div>
+        <div class="pm-related-name">Brat</div>
+        <div class="pm-related-price">1,200,000₫</div>
+      </div>
+    </div>
+  </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- hết modal-body -->
+<script>
+  $(function () {
+    // đổi ảnh lớn khi click thumbnail
+    $('.pm-thumb').on('click', function () {
+      var bigSrc = $(this).data('big');
+      $('#pm-main-img-1').attr('src', bigSrc);
+      $(this).addClass('active').siblings('.pm-thumb').removeClass('active');
+    });
+
+    // chọn size
+    $('.pm-size-btn').on('click', function () {
+      if ($(this).hasClass('disabled')) return;
+      $('.pm-size-btn').removeClass('active');
+      $(this).addClass('active');
+    });
+
+    // chọn màu (đơn giản chỉ highlight ô)
+    $('.pm-color-option').on('click', function () {
+      $('.pm-color-option').removeClass('active');
+      $(this).addClass('active');
+    });
+  });
+
+  $(function () {
+    // ... các script khác của bạn ...
+
+    // Hàm cân bằng chiều cao của các Product Card trong một hàng
+    function equalHeightProductCards() {
+      // 1. Reset chiều cao về auto để tính toán lại chính xác
+      $('.product-card').css('height', 'auto');
+
+      // 2. Lặp qua các hàng (row) để xử lý từng hàng riêng biệt
+      // Vì layout của bạn dùng col-sm-4, mỗi hàng có 3 sản phẩm
+      var row = $('.row:has(.product-card)');
+
+      // 3. Lặp qua từng nhóm 3 cột (từ chỉ mục 0, 3, 6, ...)
+      // Đây là cách xử lý 3 cột trong Bootstrap 3: 0, 1, 2 là hàng 1; 3, 4, 5 là hàng 2, v.v.
+      for (var i = 0; i < row.children('.col-sm-4').length; i += 3) {
+        var $cols = row.children('.col-sm-4').slice(i, i + 3);
+        var maxHeight = 0;
+
+        // 4. Tìm chiều cao tối đa trong 3 cột của hàng đó
+        $cols.each(function() {
+          var cardHeight = $(this).find('.product-card').outerHeight();
+          if (cardHeight > maxHeight) {
+            maxHeight = cardHeight;
+          }
+        });
+
+        // 5. Thiết lập chiều cao tối đa tìm được cho tất cả các card trong hàng
+        if (maxHeight > 0) {
+          $cols.find('.product-card').css('height', maxHeight + 'px');
+        }
+      }
+    }
+
+    // Chạy hàm khi trang tải xong
+    equalHeightProductCards();
+
+    // Nên chạy lại hàm này nếu có bất kỳ thay đổi layout nào xảy ra sau khi tải trang (ví dụ: filter, load thêm sản phẩm)
+    $(window).resize(equalHeightProductCards);
+  });
+</script>
+
+
+</body>
+</html>
